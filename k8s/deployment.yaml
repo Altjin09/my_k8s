@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: random-word-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: random-word
+  template:
+    metadata:
+      labels:
+        app: random-word
+    spec:
+      containers:
+      - name: random-word-container
+        image: altjin09/random-word-app:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5050
+
