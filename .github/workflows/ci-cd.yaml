@@ -31,10 +31,6 @@ jobs:
           mkdir -p ~/.kube
           echo "${{ secrets.KUBECONFIG }}" | base64 -d > ~/.kube/config
 
-      - name: Deploy cluster (apply deployment.yaml)
-        run: |
-          kubectl apply -f k8s/deployment.yaml --insecure-skip-tls-verify
-
       - name: Update image in deployment
         run: |
           kubectl set image deployment/random-word-deployment random-word-container=${{ secrets.DOCKER_USERNAME }}/random-word-app:latest --insecure-skip-tls-verify
